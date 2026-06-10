@@ -1,0 +1,50 @@
+{
+  "name": "mule-code-review-chatbot",
+  "version": "1.0.0",
+  "description": "An intelligent chatbot for reviewing MuleSoft code and providing best practices guidance",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js --server --port ${PORT:-8080}",
+    "start:local": "node src/index.js --server --port 3000",
+    "start:cli": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
+  },
+  "keywords": [
+    "mulesoft",
+    "code-review",
+    "chatbot",
+    "esb",
+    "integration",
+    "automation"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "chalk": "^4.1.2",
+    "compromise": "^14.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^4.18.2",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.2.0",
+    "inquirer": "^9.2.0",
+    "natural": "^6.10.0",
+    "socket.io": "^4.6.0",
+    "winston": "^3.8.2",
+    "xml2js": "^0.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0",
+    "eslint-config-standard": "^17.0.0",
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

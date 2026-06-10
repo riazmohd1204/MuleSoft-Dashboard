@@ -1,0 +1,164 @@
+﻿{
+    "apiName":  "leviC4E-omni-ecom-returns-ama-epoch-sub",
+    "branchName":  "release-SOLAR-R3.3",
+    "overallVerdict":  "FAILED",
+    "rows":  [
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "eframework-connector-version",
+                     "Finding":  "eframework-connector version is 2.1.1. ✓"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "eframework-impl-version",
+                     "Finding":  "eframework-impl version is 2.1.1. ✓"
+                 },
+                 {
+                     "Status":  "NOT_APPLICABLE",
+                     "Rule":  "newrelic-eframework",
+                     "Finding":  "No NewRelic integration detected."
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "business-events-count",
+                     "Finding":  "Found 1 business event(s). ✓ (Solar API — at least 1 required.)"
+                 },
+                 {
+                     "Status":  "FAILED",
+                     "Rule":  "error-event-flow",
+                     "Finding":  "Flows WITHOUT error handlers: logicFlow (logic.xml)"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "minimal-logging-enabled",
+                     "Finding":  "Minimal logging connector found in pom.xml (version: 1.1.1). ✓"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "transaction-id-creation",
+                     "Finding":  "Minimal logging \u0027New\u0027 connector found for Transaction ID creation. ✓"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "pull-all-operation",
+                     "Finding":  "\u0027Put All\u0027 (min-log:put-all) operation found with transaction-id. ✓"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "timed-scope",
+                     "Finding":  "Timed scope found wrapping main operation with transactionProperties. ✓"
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "transaction-properties",
+                     "Finding":  "No reference to \u0027TransactionProperties\u0027 found in Mule XML files. Verify they are passed in all minimal logging operations."
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "recent-connectors",
+                     "Finding":  "Runtime version 4.9.6:5-java17 is compatible. 1 connector(s) can be upgraded: IBM MQ Connector: 1.7.2 → 2.0.6. 4 connector(s) already at latest."
+                 },
+                 {
+                     "Status":  "FAILED",
+                     "Rule":  "reconnection-strategy",
+                     "Finding":  "Connectors WITHOUT reconnection strategy: http:request-config in config.xml, http:request-config in config.xml, anypoint-mq:config in config.xml, ibm-mq:config in config.xml, http:listener-config in router.xml"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "ibm-mq-reconnection",
+                     "Finding":  "IBM MQ consumer reconnection set to \u0027forever\u0027. ✓"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "latest-runtime",
+                     "Finding":  "Mule runtime version is 4.9.6:5-java17. ✓"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "logger-debug-level",
+                     "Finding":  "All 3 logger(s) are set to DEBUG level. ✓"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "munit-coverage",
+                     "Finding":  "Live MUnit coverage is 93.1% (from undefined environment). Meets 80% threshold. ✓"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "no-hardcoding",
+                     "Finding":  "No obvious hardcoded values found in property files. ✓"
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "remove-sensitive-passwords",
+                     "Finding":  "All property files checked — no real passwords, secrets, or sensitive data found. Values are properly externalized to CPS or masked. ✓"
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "exchange-endpoints",
+                     "Finding":  "1 HTTP listener(s) found. Verify all endpoints are documented in Anypoint Exchange with method, path, description, and examples."
+                 },
+                 {
+                     "Status":  "PASSED",
+                     "Rule":  "exchange-documentation-link",
+                     "Finding":  "Exchange documentation validated using Exchange credentials. Exchange URL: https://anypoint.mulesoft.com/exchange/2e4d99ab-8cd1-4643-b467-e2c5d8ba6e6f/omni-ecom-returns-ama-epoch-sub/minor/1.0/"
+                 },
+                 {
+                     "Status":  "FAILED",
+                     "Rule":  "design-center-viewer-access",
+                     "Finding":  "Design Center API access failed with HTTP 403. Verify Design Center Viewer scope for the connected app."
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "overview-page",
+                     "Finding":  "Verify Exchange main page has Overview section explaining business functionality, process context, and upstream/downstream dependencies."
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "flow-description",
+                     "Finding":  "Verify documentation covers: source system, target system, intermediate components, and data transformations."
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "sumologic-event-details",
+                     "Finding":  "Verify Sumo Logic event documentation includes: domain name, entity name, event types, custom fields, and dashboard references."
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "minimal-logging-details",
+                     "Finding":  "Verify documentation includes: extra logged parameters, unique API identifier, correlation ID strategy."
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "servicenow-incident-details",
+                     "Finding":  "Verify ServiceNow incident documentation includes sample incident with: number, category, assignment group, priority, and resolution."
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "raml-synced",
+                     "Finding":  "api.raml found along with 6 API spec file(s). Verify content is synced with Anypoint Design Center."
+                 },
+                 {
+                     "Status":  "NEEDS_REVIEW",
+                     "Rule":  "raml-version-match",
+                     "Finding":  "6 API spec file(s) found. Verify api.raml version matches the version in Anypoint Design Center."
+                 }
+             ],
+    "failed":  [
+                   {
+                       "Status":  "FAILED",
+                       "Rule":  "error-event-flow",
+                       "Finding":  "Flows WITHOUT error handlers: logicFlow (logic.xml)"
+                   },
+                   {
+                       "Status":  "FAILED",
+                       "Rule":  "reconnection-strategy",
+                       "Finding":  "Connectors WITHOUT reconnection strategy: http:request-config in config.xml, http:request-config in config.xml, anypoint-mq:config in config.xml, ibm-mq:config in config.xml, http:listener-config in router.xml"
+                   },
+                   {
+                       "Status":  "FAILED",
+                       "Rule":  "design-center-viewer-access",
+                       "Finding":  "Design Center API access failed with HTTP 403. Verify Design Center Viewer scope for the connected app."
+                   }
+               ]
+}

@@ -1,0 +1,262 @@
+﻿{
+    "apiName":  "leviC4E-omni-ecom-salesack-ama-epoch-sub",
+    "branchName":  "release-SOLAR-R3.3",
+    "overallVerdict":  "FAILED",
+    "totalRules":  28,
+    "passed":  14,
+    "failed":  3,
+    "rows":  [
+                 {
+                     "Category":  "eFramework Configuration",
+                     "RuleId":  "eframework-connector-version",
+                     "RuleName":  "eFramework Connector Version",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "eframework-connector version is 2.1.1. ✓",
+                     "Remediation":  "Update the eframework-connector dependency in pom.xml to the correct version based on API type (solar vs non-solar)."
+                 },
+                 {
+                     "Category":  "eFramework Configuration",
+                     "RuleId":  "eframework-impl-version",
+                     "RuleName":  "eFramework Implementation Version",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "eframework-impl version is 2.1.1. ✓",
+                     "Remediation":  "Update eframework-impl version in pom.xml. If using 2.0.3 (ecom), verify Sumologic direct-write configuration."
+                 },
+                 {
+                     "Category":  "eFramework Configuration",
+                     "RuleId":  "newrelic-eframework",
+                     "RuleName":  "NewRelic Event Framework",
+                     "Status":  "NOT_APPLICABLE",
+                     "Location":  "N/A",
+                     "Finding":  "No NewRelic integration detected.",
+                     "Remediation":  "If API integrates with NewRelic, ensure Mule4-eframework-cnsmr-v3 is used as the event framework."
+                 },
+                 {
+                     "Category":  "Business Events Configuration",
+                     "RuleId":  "business-events-count",
+                     "RuleName":  "Business Events - Main Process",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "Found 1 business event(s). ✓ (Solar API — at least 1 required.)",
+                     "Remediation":  "Solar: Add at least 1 business event in the main flow. Non-Solar: Add business event tracking at both the beginning and end of the main process flow."
+                 },
+                 {
+                     "Category":  "Business Events Configuration",
+                     "RuleId":  "error-event-flow",
+                     "RuleName":  "Error Event Flow",
+                     "Status":  "FAILED",
+                     "Location":  "salesAck.xml",
+                     "Finding":  "Flows WITHOUT error handlers: salesAckFlow (salesAck.xml)",
+                     "Remediation":  "Create a dedicated error event flow that handles all error types using on-error-propagate or on-error-continue strategies."
+                 },
+                 {
+                     "Category":  "Minimal Logging",
+                     "RuleId":  "minimal-logging-enabled",
+                     "RuleName":  "Minimal Logging Enabled",
+                     "Status":  "PASSED",
+                     "Location":  "pom.xml",
+                     "Finding":  "Minimal logging connector found in pom.xml (version: 1.1.1). ✓",
+                     "Remediation":  "Enable minimal logging framework in the application configuration."
+                 },
+                 {
+                     "Category":  "Minimal Logging",
+                     "RuleId":  "transaction-id-creation",
+                     "RuleName":  "Transaction ID Creation",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "Minimal logging \u0027New\u0027 connector found for Transaction ID creation. ✓",
+                     "Remediation":  "Ensure transaction ID is generated via minimal logging \u0027New connector\u0027 or received from the upstream API header."
+                 },
+                 {
+                     "Category":  "Minimal Logging",
+                     "RuleId":  "pull-all-operation",
+                     "RuleName":  "Put All Operation",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "\u0027Put All\u0027 (min-log:put-all) operation found with transaction-id. ✓",
+                     "Remediation":  "Add a min-log:put-all operation as the first step before the main process begins, and ensure it includes transaction-id."
+                 },
+                 {
+                     "Category":  "Minimal Logging",
+                     "RuleId":  "timed-scope",
+                     "RuleName":  "Timed Scope for Main Operation",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "Timed scope found wrapping main operation with transactionProperties. ✓",
+                     "Remediation":  "Wrap the main operation logic inside a \u0027Timed\u0027 scope with transactionProperties to capture execution timing."
+                 },
+                 {
+                     "Category":  "Minimal Logging",
+                     "RuleId":  "transaction-properties",
+                     "RuleName":  "Transaction Properties in Logging",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "N/A",
+                     "Finding":  "No reference to \u0027TransactionProperties\u0027 found in Mule XML files. Verify they are passed in all minimal logging operations.",
+                     "Remediation":  "Ensure all minimal logging operations include TransactionProperties in their configuration."
+                 },
+                 {
+                     "Category":  "POM File Connectors",
+                     "RuleId":  "recent-connectors",
+                     "RuleName":  "Recent Connector Versions",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "N/A",
+                     "Finding":  "Runtime version 4.9.6:5-java17 is compatible. 1 connector(s) can be upgraded: IBM MQ Connector: 1.7.2 → 2.0.6. 5 connector(s) already at latest.",
+                     "Remediation":  "Update all connector dependencies in pom.xml to their latest stable versions. Check Anypoint Exchange for current versions."
+                 },
+                 {
+                     "Category":  "POM File Connectors",
+                     "RuleId":  "reconnection-strategy",
+                     "RuleName":  "Reconnection Strategy",
+                     "Status":  "FAILED",
+                     "Location":  "config.xml",
+                     "Finding":  "Connectors WITHOUT reconnection strategy: http:request-config in config.xml, http:request-config in config.xml, anypoint-mq:config in config.xml, ibm-mq:config in config.xml, http:listener-config in router.xml",
+                     "Remediation":  "Add reconnection strategies to all transport connector configurations in the Mule XML files."
+                 },
+                 {
+                     "Category":  "POM File Connectors",
+                     "RuleId":  "ibm-mq-reconnection",
+                     "RuleName":  "IBM MQ Reconnection Strategy",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "IBM MQ consumer reconnection set to \u0027forever\u0027. ✓",
+                     "Remediation":  "Configure IBM MQ reconnection: \u0027forever\u0027 for consumers, \u0027standard\u0027 for publishers (with dead-letter queue strategy confirmed)."
+                 },
+                 {
+                     "Category":  "Runtime Version",
+                     "RuleId":  "latest-runtime",
+                     "RuleName":  "Latest Runtime Version",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "Mule runtime version is 4.9.6:5-java17. ✓",
+                     "Remediation":  "Update the Mule runtime version in pom.xml to 4.9.x (latest stable version)."
+                 },
+                 {
+                     "Category":  "Logger Configuration",
+                     "RuleId":  "logger-debug-level",
+                     "RuleName":  "Logger Level - Debug",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "All 4 logger(s) are set to DEBUG level. ✓",
+                     "Remediation":  "Change all logger components to use \u0027DEBUG\u0027 level instead of INFO, WARN, or ERROR."
+                 },
+                 {
+                     "Category":  "MUnit Testing",
+                     "RuleId":  "munit-coverage",
+                     "RuleName":  "MUnit Coverage Threshold",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "Live MUnit coverage is 96.61% (from undefined environment). Meets 80% threshold. ✓",
+                     "Remediation":  "Add or update MUnit tests to achieve at least 80% code coverage. Use munit-maven-plugin to verify coverage."
+                 },
+                 {
+                     "Category":  "No Hard Coding",
+                     "RuleId":  "no-hardcoding",
+                     "RuleName":  "No Hardcoded Values",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "No obvious hardcoded values found in property files. ✓",
+                     "Remediation":  "Move all hardcoded values (URLs, credentials, endpoints, ports, etc.) to property files under src/main/resources and reference them using ${property.name} syntax."
+                 },
+                 {
+                     "Category":  "No Hard Coding",
+                     "RuleId":  "remove-sensitive-passwords",
+                     "RuleName":  "No Real Secrets/Passwords in Property Files",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "All property files checked — no real passwords, secrets, or sensitive data found. Values are properly externalized to CPS or masked. ✓",
+                     "Remediation":  "Externalize all secrets/passwords to CPS using ${secure::...} or ${cps::...}. Alternatively, mask values as xxx or yyy. No real passwords allowed in any property file."
+                 },
+                 {
+                     "Category":  "Exchange Documentation",
+                     "RuleId":  "exchange-endpoints",
+                     "RuleName":  "API Endpoints Documentation",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "N/A",
+                     "Finding":  "1 HTTP listener(s) found. Verify all endpoints are documented in Anypoint Exchange with method, path, description, and examples.",
+                     "Remediation":  "Document all HTTP endpoints in Anypoint Exchange with method, path, description, request/response examples."
+                 },
+                 {
+                     "Category":  "Exchange Documentation",
+                     "RuleId":  "exchange-documentation-link",
+                     "RuleName":  "Exchange Documentation Link Validation",
+                     "Status":  "PASSED",
+                     "Location":  "N/A",
+                     "Finding":  "Exchange documentation validated using Exchange credentials. Exchange URL: https://anypoint.mulesoft.com/exchange/2e4d99ab-8cd1-4643-b467-e2c5d8ba6e6f/omni-ecom-salesack-ama-epoch-sub/minor/1.0/",
+                     "Remediation":  "Publish/update Exchange docs so the API page is reachable at https://anypoint.mulesoft.com/exchange/{orgId}/{assetId}/minor/1.0/, and grant the connected app Exchange Viewer scope for API validation."
+                 },
+                 {
+                     "Category":  "Exchange Documentation",
+                     "RuleId":  "design-center-viewer-access",
+                     "RuleName":  "Design Center Viewer Access Validation",
+                     "Status":  "FAILED",
+                     "Location":  "N/A",
+                     "Finding":  "Design Center API access failed with HTTP 403. Verify Design Center Viewer scope for the connected app.",
+                     "Remediation":  "Grant Design Center Viewer scope to the connected app used for Design Center validation and verify API Designer project listing access."
+                 },
+                 {
+                     "Category":  "Exchange Documentation",
+                     "RuleId":  "overview-page",
+                     "RuleName":  "Overview Page",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "N/A",
+                     "Finding":  "Verify Exchange main page has Overview section explaining business functionality, process context, and upstream/downstream dependencies.",
+                     "Remediation":  "Add an Overview section to Exchange documentation explaining the business context, purpose, and position in the process flow."
+                 },
+                 {
+                     "Category":  "Exchange Documentation",
+                     "RuleId":  "flow-description",
+                     "RuleName":  "Flow Description",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "N/A",
+                     "Finding":  "Verify documentation covers: source system, target system, intermediate components, and data transformations.",
+                     "Remediation":  "Add a flow description section documenting source systems, target systems, and intermediate components/transformations."
+                 },
+                 {
+                     "Category":  "Exchange Documentation",
+                     "RuleId":  "sumologic-event-details",
+                     "RuleName":  "Sumo Logic Event Details",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "N/A",
+                     "Finding":  "Verify Sumo Logic event documentation includes: domain name, entity name, event types, custom fields, and dashboard references.",
+                     "Remediation":  "Document the Sumo Logic event configuration: domain name, entity name, event types, and any custom fields."
+                 },
+                 {
+                     "Category":  "Exchange Documentation",
+                     "RuleId":  "minimal-logging-details",
+                     "RuleName":  "Minimal Logging Details",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "N/A",
+                     "Finding":  "Verify documentation includes: extra logged parameters, unique API identifier, correlation ID strategy.",
+                     "Remediation":  "Document all custom logging parameters, correlation IDs, and the unique identifier used for this API."
+                 },
+                 {
+                     "Category":  "Exchange Documentation",
+                     "RuleId":  "servicenow-incident-details",
+                     "RuleName":  "ServiceNow Incident Details",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "N/A",
+                     "Finding":  "Verify ServiceNow incident documentation includes sample incident with: number, category, assignment group, priority, and resolution.",
+                     "Remediation":  "Include a sample ServiceNow incident with details like incident number, category, assignment group, and priority."
+                 },
+                 {
+                     "Category":  "RAML Specification",
+                     "RuleId":  "raml-synced",
+                     "RuleName":  "RAML Synced with Design Center",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "api.raml",
+                     "Finding":  "api.raml found along with 6 API spec file(s). Verify content is synced with Anypoint Design Center.",
+                     "Remediation":  "Sync RAML from Anypoint Design Center and ensure it matches the version in src/main/resources/api/."
+                 },
+                 {
+                     "Category":  "RAML Specification",
+                     "RuleId":  "raml-version-match",
+                     "RuleName":  "api.raml Version Match",
+                     "Status":  "NEEDS_REVIEW",
+                     "Location":  "api.raml",
+                     "Finding":  "6 API spec file(s) found. Verify api.raml version matches the version in Anypoint Design Center.",
+                     "Remediation":  "Verify api.raml version matches Design Center. Ensure all implemented endpoints are declared in the RAML specification."
+                 }
+             ]
+}

@@ -1,0 +1,13 @@
+# Files to exclude from ZIP deployment
+node_modules/
+.git/
+.vscode/
+.env
+.env.local
+*.log
+logs/
+coverage/
+.DS_Store
+*.test.js
+tests/
+.gitignore
